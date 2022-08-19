@@ -10,6 +10,7 @@ from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
 
 import os
+import urllib
 
 # Account SID and Auth Token from www.twilio.com/console
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
