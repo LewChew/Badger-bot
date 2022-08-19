@@ -1,0 +1,42 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<body>
+  <div id="calc-container">
+    <h1>Release the Badger!</h1>
+    <label>Where can Badger help?</label>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="physical" value="h" id="health-option" checked>
+      <label class="form-check-label" for="health-option">
+        Physical
+      </label>
+   </div>
+   <div class="form-check">
+     <input class="form-check-input" type="checkbox" name="mental" value="m" id="mental-option" checked>
+     <label class="form-check-label" for="mental-option">
+       Mental
+     </label>
+   </div>
+   <br>
+   <form onsubmit="startBadger()" >
+    Enter your phone number: <input id="fphone" type="text" size="20">
+    <input type="submit">
+  </form>
+  
+
+<p id="demo"></p>
+
+<script>
+  function confirmInput() {
+    fphone = document.forms[0].fphone.value;
+    alert("Hello, confirm this is your phone " + fphone + "!");
+  }
+  function startBadger() {
+    fstart = "https://1716-71-184-198-93.ngrok.io/startBadger?phone=" + document.forms[0].fphone.value;
+    fetch(fstart, {credentials: 'omit'})
+  
+  }
+</script>
+  </div>
+</body>
+{% endblock content %}

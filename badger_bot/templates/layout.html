@@ -29,12 +29,30 @@
 
   </header>
 
-  <div class="container content">
-    <p>This is some text in a div element.</p>
-  
-
-  </div>
-
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="content-section">
+          <h3>Badger</h3>
+          <p class='text-muted'>Push Yourself!
+            <ul class="list-group">
+              <div class="col-md-8">
+                {% block content %}{% endblock %}
+            </ul>
+          </p>
+          <p class='text-muted'>Get or Give a Badger Boost
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-light">Badger Boost Physical Health</li>
+              <li class="list-group-item list-group-item-light">Badger Boost Mental Health</li>
+              <li class="list-group-item list-group-item-light">Tormentor Mode</li>
+              <li class="list-group-item list-group-item-light">Gift a Badger Boost</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+     
+    </div>
+  </main>
 
   <!-- Import navbar component -->
   {% include 'includes/_footer.html' %}

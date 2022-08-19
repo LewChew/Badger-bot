@@ -6,6 +6,12 @@ from badger_bot import app, db
 from badger_bot.models import User, Post
 from badger_bot.forms import PostForm
 
+from twilio.twiml.messaging_response import MessagingResponse, Message
+from twilio.rest import Client
+
+# Account SID and Auth Token from www.twilio.com/console
+client = Client('ACcca09f0821ced8eca670c9bb9cd6d557', 'c5aa3f75a00ef17ea5abe330131bcde6')
+
 @app.route("/")
 def index():
     db.create_all()
@@ -147,3 +153,50 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('index'))
+
+@app.route("/startBadger")
+def outbound_sms():
+    args = request.args
+    phoneTo = args.get("phone")
+    if phoneTo:
+        message = client.messages \
+            .create(
+            body='You have released the Badger! Are you ready?',
+            from_='2602701024',
+            to= phoneTo
+        )
+        return message.body
+    else:
+        message2 = "add phone Parameters to request"
+        return message2
+
+@app.route('/call', methods=['POST'])
+def outbound_call():
+    song_title = request.args.get('track')
+    track_url = 'Testing123'
+
+    response = MessagingResponse()
+    response.play(track_url)
+    return str(response)
+
+@app.route('/sms', methods=['POST'])
+def inbound_sms():
+    response = MessagingResponse()
+    response.message('Everybody needs a badger!')
+
+    # Grab the song title from the body of the text message.
+    song_title = urllib.parse.quote(request.form['Body'])
+    
+    #print(song_title)
+    # Grab the relevant phone numbers.
+    from_number = request.form['From']
+    to_number = request.form['To']
+    twiml_1 = '<Response><Say>Hello, You have released the badger. Proceed with caution.</Say></Response>'
+    # Create a phone call that uses our other route to play a song from Spotify.
+    client.api.account.calls.create(to=from_number, from_=to_number, twiml=twiml_1)
+
+   # client.api.account.calls.create(to=from_number, from_=to_number,
+   #                    url='http://2b66-71-184-198-93.ngrok.io/call?track={}'
+   #                     .format(song_title))
+
+    return str(response)
