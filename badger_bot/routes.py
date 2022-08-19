@@ -9,8 +9,12 @@ from badger_bot.forms import PostForm
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
 
+import os
+
 # Account SID and Auth Token from www.twilio.com/console
-client = Client('ACcca09f0821ced8eca670c9bb9cd6d557', 'c5aa3f75a00ef17ea5abe330131bcde6')
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
 
 @app.route("/")
 def index():
