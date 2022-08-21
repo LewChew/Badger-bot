@@ -1,1 +1,1 @@
-twilio.env
+echo "twilio.env" >> .gitignore
