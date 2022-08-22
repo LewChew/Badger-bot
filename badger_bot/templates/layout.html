@@ -29,38 +29,17 @@
 
   </header>
   
-  <main>
-
-    <div id="calc-container">
-      <h1>Release the Badger!</h1>
-     </div>
-     <br>
-     <form onsubmit="newBadger()" >
-      Enter your phone number: <input id="fphone" type="text" size="20">
-      <input type="submit">
-    </form>
-    
+  <section>
   
-  <p id="demo"></p>
-  
-  <script>
-    function confirmInput() {
-      fphone = document.forms[0].fphone.value;
-      alert("Hello, confirm this is your phone " + fphone + "!");
-    }
-    $(document).ready(function(){
-  $("button").click(function(){
-    $.get("demo_test.asp", function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
-    });
-  });
-});
-  </script>
-    </div>
-  </main>
+    <article>
+      <h1>London</h1>
+      <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+      <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
+    </article>
+  </section>
     
 
-  <!-- Import navbar component -->
+  <!-- Import footer component -->
   {% include 'includes/_footer.html' %}
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
