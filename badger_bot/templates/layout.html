@@ -47,7 +47,7 @@
        </label>
      </div>
      <br>
-     <form onsubmit="startBadger()" >
+     <form onsubmit="newBadger()" >
       Enter your phone number: <input id="fphone" type="text" size="20">
       <input type="submit">
     </form>
@@ -60,11 +60,13 @@
       fphone = document.forms[0].fphone.value;
       alert("Hello, confirm this is your phone " + fphone + "!");
     }
-    function startBadger() {
-      fstart = "https://1716-71-184-198-93.ngrok.io/startBadger?phone=" + document.forms[0].fphone.value;
-      fetch(fstart, {credentials: 'omit'})
-    
-    }
+    $(document).ready(function(){
+  $("button").click(function(){
+    $.get("demo_test.asp", function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
   </script>
     </div>
   </main>

@@ -170,6 +170,7 @@ def outbound_sms():
             from_='2602701024',
             to= phoneTo
         )
+        print("hello Tuck")
         return message.body
     else:
         message2 = "add phone Parameters to request"
@@ -190,7 +191,7 @@ def inbound_sms():
     response.message('Everybody needs a badger!')
 
     # Grab the song title from the body of the text message.
-    song_title = urllib.parse.quote(request.form['Body'])
+    # song_title = urllib.parse.quote(request.form['Body'])
     
     #print(song_title)
     # Grab the relevant phone numbers.
