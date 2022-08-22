@@ -1,8 +1,12 @@
 .badger {
     float: left;
-    padding: 20px;
+    padding: 40px;
     width: 70%;
     font-style: italic;
     background-color: #0fedd7;
   
   }
+.badger-head {
+  float: center;
+  padding: 20px;
+}
