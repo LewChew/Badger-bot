@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, abort
 from flask_login import login_user, logout_user, login_required, current_user
 from passlib.hash import sha256_crypt
 
@@ -170,8 +170,8 @@ def outbound_sms():
             from_='2602701024',
             to= phoneTo
         )
-        print("hello Tuck")
-        return message.body
+        flash('Check your phone for the Badger', 'success')
+        return render_template('released.html')
     else:
         message2 = "add phone Parameters to request"
         return message2

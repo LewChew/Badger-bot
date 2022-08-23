@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 30px
 }
 
 .article-title {
@@ -81,4 +82,17 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.badger {
+  float: left;
+  padding: 40px;
+  width: 70%;
+  font-style: italic;
+  background-color: #0fedd7;
+}
+
+.badger-head {
+  float: right;
+  padding: 20px;
 }
