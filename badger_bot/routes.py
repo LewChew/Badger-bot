@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, flash, abort
 from flask_login import login_user, logout_user, login_required, current_user
 from passlib.hash import sha256_crypt
 
-from badger_bot import app, db
+from badger_bot import app, mysql
 from badger_bot.models import User, Post
 from badger_bot.forms import PostForm
 
@@ -19,7 +19,7 @@ client = Client(account_sid, auth_token)
 
 @app.route("/")
 def index():
-    db.create_all()
+    mysql.create_all()
     posts = Post.query.all()
     return render_template("index.html", posts=posts)
 
@@ -56,8 +56,8 @@ def register():
             return render_template('register.html')
         else:
             # Insert new user into SQL
-            db.session.add(new_user)
-            db.session.commit()
+            mysql.session.add(new_user)
+            mysql.session.commit()
 
             login_user(new_user)
 
@@ -114,8 +114,8 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
+        mysql.session.add(post)
+        mysql.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('index'))
     return render_template('create_post.html', title='New Post',
@@ -138,7 +138,7 @@ def update_post(post_id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.content = form.content.data
-        db.session.commit()
+        mysql.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('post', post_id=post.id))
     elif request.method == 'GET':
@@ -154,8 +154,8 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
-    db.session.delete(post)
-    db.session.commit()
+    mysql.session.delete(post)
+    mysql.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('index'))
 
