@@ -16,6 +16,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #5f788a;
 }
 
+.site-header {
+  height: 100pt;
+}
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;
 }
