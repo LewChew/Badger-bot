@@ -4,7 +4,7 @@ from passlib.hash import sha256_crypt
 
 from badger_bot import app, mysql
 from badger_bot.models import User, Post
-from badger_bot.forms import PostForm
+from badger_bot.forms import BadgerForm, PostForm
 
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
@@ -162,6 +162,7 @@ def delete_post(post_id):
 @app.route("/startBadger")
 def outbound_sms():
     args = request.args
+    form = (BadgerForm)
     phoneTo = args.get("phone")
     if phoneTo:
         message = client.messages \
@@ -171,7 +172,8 @@ def outbound_sms():
             to= phoneTo
         )
         flash('Check your phone for the Badger', 'success')
-        return render_template('released.html')
+        return render_template('create_badger.html', title='Create Badger', form=form, legend='create Badger')
+
     else:
         message2 = "add phone Parameters to request"
         return message2
