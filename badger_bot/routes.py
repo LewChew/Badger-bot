@@ -159,7 +159,7 @@ def delete_post(post_id):
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('index'))
 
-@app.route("/startBadger")
+@app.route("/testBadger")
 def outbound_sms():
     args = request.args
     form = (BadgerForm)
@@ -167,7 +167,7 @@ def outbound_sms():
     if phoneTo:
         message = client.messages \
             .create(
-            body='You have released the Badger! Are you ready?',
+            body='You have released a Badger! Are you ready?',
             from_='2602701024',
             to= phoneTo
         )
